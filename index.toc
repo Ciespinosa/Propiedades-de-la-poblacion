@@ -1,0 +1,19 @@
+\contentsline {section}{Introducción}{1}{section*.2}
+\contentsline {section}{Distribución geográfica}{2}{section*.3}
+\contentsline {subsection}{Preparación de datos}{2}{section*.4}
+\contentsline {subsubsection}{Importando datos de ocurrencia}{2}{section*.5}
+\contentsline {subsubsection}{Limpieza de datos}{3}{section*.6}
+\contentsline {subsection}{Datos de ausencia y de fondo}{7}{section*.7}
+\contentsline {subsection}{Datos ambientales}{9}{section*.8}
+\contentsline {subsubsection}{Datos raster}{9}{section*.9}
+\contentsline {subsubsection}{Extrayendo los datos ambientales}{10}{section*.10}
+\contentsline {subsection}{Ajuste del modelo, predicción y evaluación}{11}{section*.11}
+\contentsline {subsubsection}{Ajuste de un modelo}{11}{section*.12}
+\contentsline {subsubsection}{Predicciones}{12}{section*.13}
+\contentsline {subsubsection}{Evaluación del modelo}{13}{section*.14}
+\contentsline {subsection}{Métodos de modelamiento}{14}{section*.15}
+\contentsline {subsubsection}{Tipos de algoritmos usados}{14}{section*.16}
+\contentsline {subsubsection}{Algoritmos de Envuelta}{16}{section*.17}
+\contentsline {subsubsection}{Modelos de regresiones}{18}{section*.18}
+\contentsline {subsubsection}{Modelos de aprendizaje automático}{20}{section*.19}
+\contentsline {subsection}{Combinando predicciones del modelo}{23}{section*.20}

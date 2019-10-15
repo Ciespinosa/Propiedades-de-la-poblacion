@@ -1,0 +1,1842 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Propiedades de la poblaciÃ³n},
+            pdfauthor={Carlos IvÃ¡n Espinosa},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Propiedades de la poblaciÃ³n}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Carlos IvÃ¡n Espinosa}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{4 de octubre de 2019}
+
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Introducción}\label{introduccion}
+
+Nosotros como individuos que tan consientes somos de pertenecer a un
+grupo más grande de individuos, una población, y que de una u otra
+manera las características de ese grupo tiene un efecto sobre lo que nos
+pasa a nosotros individualmente. Pensemos en una propiedad del individuo
+la cantidad de hijos, es igual la cantidad de hijos que ahora tienen las
+parejas en relación a lo que tenían los abuelos de estas. Al igual que
+la población humana, las poblaciones de otros organismos tienen efectos
+sobre los organismos y esos efectos a su vez tienen un impacto sobre las
+propiedades de la población. Durante los últimos años los cambios que se
+están suscitando alrededor del planeta están afectando a las poblaciones
+de diversas especies. Poder entender como una población responde a esas
+presiones es fundamental si queremos emprender acciones de conservación.
+Este análisis pasa por la posibilidad de describir eficientemente la
+población; ¿Dónde se puede establecer la población? ¿Cuál es la
+abundancia de esa población bajo determinadas condiciones? En el
+presente ejercicio trabajaremos en comprender las herramientas
+existentes para realizar la caracterización de la comunidad y sobre todo
+en desarrollar habilidades para realizar una interpretación biológica de
+esa caracterización. Una primera restricción a la cual se enfrentan los
+organismos es el ambiente. Las condiciones ambientales restringe donde
+una población puede establecerse. La capacidad de adaptación al ambiente
+que tienen las diferentes especies define los rangos de distribución,
+hay algunos animales que tienen rangos amplios de distribución y otros
+que tienen unos rangos restringidos. De esta forma el ambiente determina
+en primera medida la \textbf{\emph{distribución geográfica}} de una
+especie, su \emph{nicho fundamental}. Una vez la población se ha
+establecido, una propiedad importante es su tamaño poblacional, la
+\textbf{\emph{abundancia poblacional}}. La abundancia de la población
+está definida por dos factores, por un lado, el rango de distribución y
+por el otro la \emph{densidad de la población}. La distribución en el
+espacio de la población no es necesariamente homogéneo y este depende de
+la escala a la cual estemos midiendo. De esta forma, las poblaciones
+ocupan el espacio generando un \textbf{\emph{patrón espacial}}, que a su
+vez determina la densidad y la abundancia.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Distribución geográfica}\label{distribucion-geografica}
+
+Como mencionamos anteriormente la distribución geográfica de una
+población está definida en primera medida por las condiciones
+ambientales, las especies ocurren ahí donde las condiciones
+macro-climáticas le permiten estar. Sin embargo, las especies no
+necesariamente se encuentran ocupando todo ese espacio, otros factores
+pueden limitar su distribución. Las barreras geográficas, por ejemplo,
+limitan las áreas que estas especies pueden realmente ocupar.
+Adicionalmente, las especies pueden ser excluidas de sitios
+ambientalmente adecuados por competencia con otras especies.
+
+Durante los últimos años se han desarrollado múltiples modelos de
+distribución espacial (SDM por sus siglas en ingles) que permiten a
+partir de unos datos de ocurrencia generar modelos de distribución
+espacial. A continuación les presento una serie de pasos que permitirá
+desarrollar modelos de distribución espacial. El presente ejercicio está
+basado en el Blog \emph{Spatial Data Science} de
+\href{https://rspatial.org/raster/sdm/index.html}{Robert Hijmans}
+
+\subsection{Preparación de datos}\label{preparacion-de-datos}
+
+Una de las fases primordiales para el desarrollo de un \emph{SDM} son
+los datos de partida. Para poder implementar un modelo necesitamos
+obtener datos de ocurrencia (coordenadas espaciales), donde la especie
+ha sido catalogada. Existen múltiples bases de datos con
+\emph{información de ocurrencia}, pero también los investigadores
+podrían tener puntos de ocurrencia levantados por ellos mismos. Una vez
+que se obtienen los datos, es necesario verificar que las coordenadas no
+sean erradas o que existan problemas con estos datos de ocurrencia,
+necesitamos \emph{limpiar los datos}.
+
+\subsubsection{Importando datos de
+ocurrencia}\label{importando-datos-de-ocurrencia}
+
+Cuando el investigador cuenta con datos de ocurrencia levantados por él
+o que ha levantado de diversas fuentes, necesitamos leerlo en R. Vamos a
+utilizar datos de un murciélago vampiro que ocurre en las áreas
+tropicales y que ha sido bastante conocido por atacar al ganado. El
+nombre científico de esta especie es \emph{Desmodus rotundus}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+
+\NormalTok{desmod <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"Ocurrencia Desmodus.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora verificamos que los datos hayan sido leídos adecuadamente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(desmod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'tbl_df', 'tbl' and 'data.frame':    251 obs. of  3 variables:
+##  $ lat: num  -4.63 -4.56 -4.56 -4.51 -4.48 ...
+##  $ lon: num  -79.5 -79.5 -79.5 -79.5 -80.4 ...
+##  $ ID : num  170591 170114 170114 170921 168803 ...
+\end{verbatim}
+
+La función \emph{str} nos permite ver las propiedades de la matriz de
+datos leída. Como vemos tenemos 251 registros y tres variables, latitud,
+longitud y un identificador.
+
+Ahora es posible que estemos iniciando el trabajo de modelado por lo que
+no disponemos de datos de ocurrencias, podríamos cargar los datos que
+han sido depositados en el \href{https://www.gbif.org/}{Global
+Biodiversity Inventory Facility (GBIF)} usando la función \emph{gbif}
+del paquete \textbf{dismo}. Si es la primera vez que usará este paquete
+seguramente tendrá que descargarlo; use la siguiente línea de código
+para hacerlo: \texttt{install.packages(“dismo”)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dismo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: raster
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: sp
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Usar las dos líneas de código a continuación para extraer }
+\CommentTok{#los datos de GBIF y guardarlos en su computador}
+
+\CommentTok{#La siguiente línea extrae los datos }
+\CommentTok{# desGbif <- gbif("Desmodus", "rotundus", geo = TRUE) }
+
+\CommentTok{#La siguiente línea graba los datos en su disco duro}
+\CommentTok{# write.csv(desGbif, "desGbif.csv")}
+
+\CommentTok{#La siguiente vez que realice el trabajo, ejecute solo leer los datos del disco duro}
+
+\NormalTok{desGbif <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"desGbif.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Pueden ver otros argumentos posibles a usarse con la función GBIF, se
+podría usar un shape o un polígono para obtener los datos de una región
+que no interese. A continuación generamos un mapa con el fin de
+verificar que los puntos tengan una ubicación correcta.
+
+\begin{quote}
+\textbf{Nota:} se puede utilizar la función \emph{getData} para obtener
+un Shapefile de un lugar que nos interese por ejemplo Ecuador o la
+función \emph{shapefile} si queremos cargar un Shape que ya tengamos en
+el computador. Estas dos funciones se encuentran en el paquete
+\textbf{raster}
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\KeywordTok{data}\NormalTok{(wrld_simpl)}
+\CommentTok{#graficamos un mapa del mundo}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(-}\DecValTok{100}\NormalTok{,}\DecValTok{40}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(-}\DecValTok{60}\NormalTok{,}\DecValTok{40}\NormalTok{), }\DataTypeTok{axes=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"light yellow"}\NormalTok{)}
+\KeywordTok{box}\NormalTok{()}
+\CommentTok{# Adicionamos los puntos de ocurrencia}
+\KeywordTok{points}\NormalTok{(desGbif$lon, desGbif$lat, }\DataTypeTok{bg=}\StringTok{'orange'}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{21}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.75}\NormalTok{)}
+\CommentTok{# plot points again to add a border, for better visibility}
+\KeywordTok{points}\NormalTok{(desmod$lon, desmod$lat, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\subsubsection{Limpieza de datos}\label{limpieza-de-datos}
+
+Un paso fundamental para poder construir los modelos es realizar una
+limpieza de datos, sobre todo si los datos provienen directamente de
+bases de datos como la de GBIF. Como podemos observar en el gráfico
+anterior existe un punto en medio del Atlántico. Es necesario limpiar
+esta serie de inconsistencias.
+
+Un punto importante es evaluar si no existen datos con coordenadas
+iguales, ver si existen datos duplicados de latitud y longitud
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dupl <-}\StringTok{ }\KeywordTok{duplicated}\NormalTok{(desGbif[, }\KeywordTok{c}\NormalTok{(}\StringTok{'lon'}\NormalTok{, }\StringTok{'lat'}\NormalTok{)])}
+\CommentTok{#Cuantos datos duplicados tenemos}
+\KeywordTok{sum}\NormalTok{(dupl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16955
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Tenemos 16951 datos duplicados que deberíamos excluir}
+\CommentTok{#Usamos este vector para eliminar los duplicados}
+\NormalTok{desGbifCd <-}\StringTok{ }\NormalTok{desGbif[!dupl,]}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora necesitamos eliminar todos los registros que no tienen datos de
+latitud y longitud.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lolNA <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(desGbifCd$lon)&}\KeywordTok{is.na}\NormalTok{(desGbifCd$lat))}
+\NormalTok{desGbifCd <-}\StringTok{ }\NormalTok{desGbifCd[-lolNA,]}
+\end{Highlighting}
+\end{Shaded}
+
+Hemos realizado algunos procesos de limpieza de datos, finalmente
+podemos hacer una corrección cruzada, usaremos los datos de los países y
+veremos si los datos corresponden a los países.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(sp)}
+\NormalTok{csDes <-}\StringTok{ }\NormalTok{desGbifCd}
+\NormalTok{csDes$country <-}\StringTok{ }\KeywordTok{droplevels}\NormalTok{(csDes$country, }\DataTypeTok{exclude =} \DecValTok{0}\NormalTok{)}
+\KeywordTok{coordinates}\NormalTok{(csDes) <-}\StringTok{  }\ErrorTok{~}\NormalTok{lon+lat}
+\KeywordTok{crs}\NormalTok{(csDes) <-}\StringTok{ }\KeywordTok{crs}\NormalTok{(wrld_simpl)}
+\KeywordTok{class}\NormalTok{(csDes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "SpatialPointsDataFrame"
+## attr(,"package")
+## [1] "sp"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ovr <-}\StringTok{ }\KeywordTok{over}\NormalTok{(csDes, wrld_simpl)}
+\KeywordTok{head}\NormalTok{(ovr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   FIPS ISO2 ISO3  UN       NAME   AREA   POP2005 REGION SUBREGION      LON
+## 1   MX   MX  MEX 484     Mexico 190869 104266392     19        13 -102.535
+## 2   CO   CO  COL 170   Colombia 103870   4494579     19         5  -73.076
+## 3   MX   MX  MEX 484     Mexico 190869 104266392     19        13 -102.535
+## 4   CS   CR  CRI 188 Costa Rica   5106   4327228     19        13  -83.946
+## 5   PE   PE  PER 604       Peru 128000  27274266     19         5  -75.552
+## 6   MX   MX  MEX 484     Mexico 190869 104266392     19        13 -102.535
+##      LAT
+## 1 23.951
+## 2  3.900
+## 3 23.951
+## 4  9.971
+## 5 -9.326
+## 6 23.951
+\end{verbatim}
+
+Vemos algunos datos que tienen NA como país, estos corresponden a los
+datos que se encuentran en el océano y que no corresponden a ocurrencia
+de la especie.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cntr <-}\StringTok{ }\NormalTok{ovr$NAME}
+
+\CommentTok{#which nos permite ver la ubicación de los puntos}
+\NormalTok{i <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(cntr))}
+\KeywordTok{length}\NormalTok{(i) }\CommentTok{#Cuantos datos sin país}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 117
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Definimos las ocurrencias que coinciden}
+\NormalTok{j <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(cntr)==}\KeywordTok{as.character}\NormalTok{(csDes$country))}
+
+\CommentTok{#vemos a que corresponden los datos que no coinciden}
+\KeywordTok{cbind.data.frame}\NormalTok{(cntr, csDes$country)[-}\KeywordTok{c}\NormalTok{(j,i),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               cntr csDes$country
+## 39       Venezuela      Colombia
+## 124      Venezuela      Colombia
+## 250       Paraguay     Argentina
+## 269         Brazil      Suriname
+## 296     Costa Rica        Panama
+## 320         Guyana      Suriname
+## 336       Suriname French Guiana
+## 350      Venezuela      Colombia
+## 355         Guyana      Suriname
+## 358         Guyana      Suriname
+## 362         Guyana      Suriname
+## 515         Mexico     Guatemala
+## 694      Guatemala        Mexico
+## 885       Suriname        Guyana
+## 886       Suriname        Guyana
+## 887       Suriname        Guyana
+## 941         Belize        Mexico
+## 951      Guatemala        Mexico
+## 974      Guatemala        Mexico
+## 1219        Belize        Mexico
+## 1226     Guatemala        Mexico
+## 1335        Brazil          Peru
+## 1361          Peru       Ecuador
+## 1417        Mexico        Belize
+## 1552      Honduras   El Salvador
+## 2012     Venezuela      Colombia
+## 2133      Colombia     Venezuela
+## 2922      Viet Nam      Colombia
+## 2945     Venezuela      Honduras
+## 2965       Bolivia        Brazil
+## 2998      Paraguay     Argentina
+## 3112 United States        Mexico
+## 3172       Bolivia     Argentina
+## 3214      Paraguay     Argentina
+\end{verbatim}
+
+La mayoría de los datos corresponden a efectos de la precisión de los
+mapas, como vemos los errores se dan entre países vecinos. Si tuviésemos
+pocos puntos deberíamos verificar y buscar el error para no perder estos
+datos, sin embargo, como tenemos suficientes datos vamos a eliminar
+estos puntos. Eliminemos los datos que caen en el mar (NA) y los que
+tienen coordenadas erradas y veamos cómo quedan nuestros datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#removemos los datos que con ubicación NA}
+\NormalTok{desmodF <-}\StringTok{ }\NormalTok{desGbifCd[-i,]}
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente, hemos eliminado las ocurrencias con problemas. Pero en el
+mapa aún tenemos puntos fuera del neotrópico, optaremos por eliminar
+estos puntos ya que se supone esta especie está restringida al
+neotrópico.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ubicamos el país}
+\NormalTok{us <-}\StringTok{ }\KeywordTok{which}\NormalTok{(desmodF$country==}\StringTok{"United States"}\NormalTok{) }
+
+\CommentTok{#Registros sobre 100 grados de longitud}
+\NormalTok{sa <-}\StringTok{ }\KeywordTok{which}\NormalTok{(desmodF$lon>}\DecValTok{80}\NormalTok{)}
+
+\NormalTok{desmodF <-}\StringTok{ }\NormalTok{desmodF[-}\KeywordTok{c}\NormalTok{(us,sa), ]}
+\end{Highlighting}
+\end{Shaded}
+
+Tenemos varios datos que hemos ido limpiando a lo largo de este
+ejercicio hasta llegar a tener unas coordenadas limpias. Sin embargo,
+puesto que realizaremos modelos predictivos con estas ocurrencias, es
+necesario reducir los posibles efectos de colinearidad espacial. Si
+tenemos dos registros de ocurrencia cercanos, por debajo de 500 metros
+(que es la resolución de las variables explicativas que veremos más
+adelante), es necesario quedarnos con uno solo de estos registros. A
+continuación vamos a eliminar los registros que se encuentran dentro de
+una misma celda.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dismo)}
+\CommentTok{# Obtenemos los datos del paquete dismo}
+\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\DataTypeTok{path=}\KeywordTok{paste}\NormalTok{(}\KeywordTok{system.file}\NormalTok{(}\DataTypeTok{package=}\StringTok{"dismo"}\NormalTok{), }\StringTok{'/ex'}\NormalTok{,}
+                       \DataTypeTok{sep=}\StringTok{''}\NormalTok{),  }\DataTypeTok{pattern=}\StringTok{'grd'}\NormalTok{,  }\DataTypeTok{full.names=}\OtherTok{TRUE} \NormalTok{)}
+
+\CommentTok{#Usamos el primer raster para obtener la mascara }
+\NormalTok{mask <-}\StringTok{ }\KeywordTok{raster}\NormalTok{(files[}\DecValTok{1}\NormalTok{])}
+\NormalTok{maskU <-}\StringTok{ }\NormalTok{mask}
+\KeywordTok{values}\NormalTok{(maskU) <-}\StringTok{ }\DecValTok{1}\NormalTok{:}\KeywordTok{ncell}\NormalTok{(mask)}
+
+\CommentTok{#convertimos en un objeto tipo SpatialPointDataFrame}
+\NormalTok{desRep <-}\StringTok{ }\NormalTok{desmodF}
+\KeywordTok{coordinates}\NormalTok{(desRep) <-}\StringTok{ }\ErrorTok{~}\NormalTok{lon+lat}
+\KeywordTok{projection}\NormalTok{(desRep) <-}\StringTok{ }\KeywordTok{CRS}\NormalTok{(}\StringTok{'+proj=longlat +datum=WGS84'}\NormalTok{)}
+
+\CommentTok{#Usamos extrac para obtener el valor de cada punto de ocurrencia}
+\NormalTok{xp <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(mask, desRep)}
+\KeywordTok{length}\NormalTok{(xp) }\CommentTok{#la cantidad de puntos que tenemos }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3220
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(}\KeywordTok{unique}\NormalTok{(xp)) }\CommentTok{#la cantidad de puntos con una ubicación mayor a }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 170
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+                   \CommentTok{#500 metros}
+\CommentTok{#definimos la ubicación de los duplicados}
+\NormalTok{dupDes <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{duplicated}\NormalTok{(xp))}
+
+\CommentTok{#usamos este vector para eliminar duplicados}
+\NormalTok{desmodFD <-}\StringTok{ }\NormalTok{desmodF[-dupDes,]}
+
+\CommentTok{#graficamos nuevamente}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(-}\DecValTok{100}\NormalTok{,}\DecValTok{50}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(-}\DecValTok{50}\NormalTok{,}\DecValTok{30}\NormalTok{), }\DataTypeTok{axes=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"light yellow"}\NormalTok{)}
+\KeywordTok{box}\NormalTok{()}
+\CommentTok{# incluimos los puntos}
+\KeywordTok{points}\NormalTok{(desmodFD$lon, desmodFD$lat, }\DataTypeTok{bg=}\StringTok{'orange'}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{21}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+Ahora tenemos unos datos limpios y listos para ser usados en nuestro
+modelo. Aunque a nosotros tomamos poco tiempo para la revisión,
+deberíamos disponer de más tiempo para revisar los datos y realizar una
+adecuada limpieza. Durante este ejercicio hemos tomado varias decisiones
+que deben ser mejor evaluadas.
+
+\subsection{Datos de ausencia y de
+fondo}\label{datos-de-ausencia-y-de-fondo}
+
+Los algoritmos para realizar modelos de distribución de especies, como
+Bioclim y Domain, usan datos de ``presencia'' para realizar el modelado
+y estos no necesitan información de ausencias. Estos modelos son
+conocidos como modelos de envuelta ambiental, porque justamente se basan
+en las características ambientales que tiene cada uno de los datos de
+presencia. Aunque estos modelos fueron bastante utilizados, hoy en día
+han perdido importancia. Actualmente los métodos de modelado de
+distribución de especies usan datos de ``\emph{ausencia}'' o datos de
+``\emph{fondo}''.
+
+Los datos de ausencia se refiere a los sitios donde aunque hemos buscado
+la especie, efectivamente no la hemos encontrado. Si solo tenemos datos
+de presencia, podemos usar un método que necesite datos de ausencia,
+sustituyendo los datos de ausencia con datos de fondo o
+pseudo-ausencias. En este caso denominamos pseudo-ausencias o datos de
+fondo porque vamos a decir que en un sitio determinado no existe la
+especie aunque realmente no hemos realizado un muestreo para determinar
+que no está. Aunque, los datos de fondo y pseudo-ausencias hacen
+referencia a lo mismo, la forma de obtener estos datos es diferente.
+Preferimos el concepto de fondo porque requiere menos suposiciones y
+tiene algunos métodos estadísticos coherentes para lidiar con la
+``superposición'' entre la presencia y los puntos de fondo (por ejemplo,
+Ward et al. 2009; Phillips y Elith, 2011).
+
+El paquete \textbf{dismo} tiene una función para muestrear puntos
+aleatorios (datos de fondo) de un área de estudio. Puede usar una
+``máscara'' para excluir el área no terrestre que no tiene datos (NA).
+También se puede usar una ``extensión'' para restringir la generación de
+puntos a un área más pequeña.
+
+A continuación cargaremos unos datos raster (más adelante hablaremos de
+ello) que usaremos como mascara, básicamente generaremos unos puntos
+aleatorios donde el raster tenga datos. Usaremos la función
+\emph{randomPoints} para generar los puntos aleatorios en esta mascara,
+además generaremos un cuadrante más pequeño donde se generen los datos
+de fondo, usaremos el argumento ``ext'' de la misma función.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Seleccionamos 500 puntos aleatorios}
+\CommentTok{#aseguramos tener los mismos datos aleatorios}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1963}\NormalTok{)}
+\CommentTok{#Generamos los datos aleatorios}
+\NormalTok{bg <-}\StringTok{ }\KeywordTok{randomPoints}\NormalTok{(mask, }\DecValTok{500} \NormalTok{) }
+
+\CommentTok{#generamos un cuadrante donde generar los datos aleatorios}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{extent}\NormalTok{(-}\DecValTok{85}\NormalTok{, -}\DecValTok{70}\NormalTok{, -}\DecValTok{10}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{bg2 <-}\StringTok{ }\KeywordTok{randomPoints}\NormalTok{(mask, }\DecValTok{50}\NormalTok{, }\DataTypeTok{ext=}\NormalTok{e)}
+
+\CommentTok{# set up the plotting area for two maps}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{mar=}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(mask), }\DataTypeTok{legend=}\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(bg, }\DataTypeTok{cex=}\FloatTok{0.3}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{21}\NormalTok{)}
+\CommentTok{# now we repeat the sampling, but limit}
+\CommentTok{# the area of sampling using a spatial extent}
+\KeywordTok{plot}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(mask), }\DataTypeTok{legend=}\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(e, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(bg2, }\DataTypeTok{cex=}\FloatTok{0.3}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{21}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-12-1.pdf} Hay
+varios enfoques que uno podría usar para muestrear puntos de
+``pseudo-ausencia'', es decir, puntos de un área más restringida que los
+datos de ``fondo''. VanDerWal et al. (2009) proponen realizar un
+muestreo en un radio alrededor de los puntos de presencia. Vamos a usar
+los datos de \emph{Desmodus rotundus} que habíamos limpiado previamente
+para generar los radios.
+
+Lo primero que haremos es cambiar los datos que se encuentran como un
+arreglo de datos (data.frame) y los convertiremos en datos espaciales
+(SpatialPointsDataFrame)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Generamos círculos con un radio de 50 km}
+\CommentTok{# usamos el objeto tipo SpatialPointDataFrame}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{circles}\NormalTok{(desRep, }\DataTypeTok{d=}\DecValTok{50000}\NormalTok{, }\DataTypeTok{lonlat=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{## Lo convertimos en un polígono}
+\NormalTok{pol <-}\StringTok{ }\KeywordTok{polygons}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+Lo función \emph{polygons} elimina las zonas en las cuales los círculos
+se superponen. Finalmente, tomamos una muestra aleatoria de puntos
+dentro de los polígonos que hemos creado. Solo queremos un punto por
+celda de cuadrícula.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Muestreamos aleatoriamente dentro del polígono}
+\CommentTok{# extraemos 250 puntos}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{34}\NormalTok{)}
+\NormalTok{samp1 <-}\StringTok{ }\KeywordTok{spsample}\NormalTok{(pol, }\DecValTok{250}\NormalTok{, }\DataTypeTok{type=}\StringTok{'random'}\NormalTok{, }\DataTypeTok{iter=}\DecValTok{25}\NormalTok{)}
+
+\CommentTok{# Extraemos el valor para cada punto de la mascara}
+\NormalTok{cells <-}\StringTok{ }\KeywordTok{cellFromXY}\NormalTok{(mask, samp1)}
+\KeywordTok{length}\NormalTok{(cells) }\CommentTok{#tenemos 250 puntos los que generamos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 250
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Eliminamos puntos repetidos}
+\CommentTok{#Los puntos que tengan el mismo valor serán aquellos que }
+\CommentTok{#están dentro de una misma celda}
+\NormalTok{cells <-}\StringTok{ }\KeywordTok{unique}\NormalTok{(cells)}
+\KeywordTok{length}\NormalTok{(cells) }\CommentTok{#17 puntos estaban en una misma celda }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 227
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+              \CommentTok{#los eliminamos y nos quedan 233 puntos }
+
+\CommentTok{#obtenemos las coordenadas de esos puntos}
+\NormalTok{xy <-}\StringTok{ }\KeywordTok{xyFromCell}\NormalTok{(mask, cells) }
+
+\NormalTok{##Graficamos}
+\KeywordTok{plot}\NormalTok{(pol, }\DataTypeTok{axes=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(xy, }\DataTypeTok{cex=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{3}\NormalTok{, }\DataTypeTok{col=}\StringTok{'blue'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+Algunos puntos aleatorios han quedado fuera del polígono que creamos.
+Esto pueda pasar ya que al generar coordenadas a partir de las celdas, R
+nos da el centroide, y esto puede ocasionar que algunos puntos se salgan
+de la máscara. Podemos seleccionar solo aquellos puntos que se
+encuentran dentro de la máscara, nuevamente usaremos la función
+\emph{over}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spxy <-}\StringTok{ }\KeywordTok{SpatialPoints}\NormalTok{(}\KeywordTok{na.omit}\NormalTok{(xy), }\DataTypeTok{proj4string=}\KeywordTok{CRS}\NormalTok{(}\StringTok{'+proj=longlat +datum=WGS84'}\NormalTok{))}
+\NormalTok{o <-}\StringTok{ }\KeywordTok{over}\NormalTok{(spxy, }\KeywordTok{geometry}\NormalTok{(x))}
+\NormalTok{xyInside <-}\StringTok{ }\NormalTok{xy[!}\KeywordTok{is.na}\NormalTok{(o), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Datos ambientales}\label{datos-ambientales}
+
+\subsubsection{Datos raster}\label{datos-raster}
+
+Los modelos de distribución de especies necesitan, por un lado, los
+puntos de presencia que acabamos de limpiar y los datos de ausencia que
+generamos, pero además, necesitamos variables que expliquen esa
+distribución (variables explicativas). Generalmente las variables
+explicativas son variables climáticas, geomorfológicas entre otras
+(clima, suelo, terreno, vegetación, uso del suelo, etc.)
+
+Las variables explicativas generalmente se organizan como archivos de
+tipo raster (cuadrícula), de tal forma que tendremos tantos raster como
+variable explicativa a ser usada. Estos datos generalmente se almacenan
+en archivos en algún tipo de formato SIG. Se pueden utilizar casi todos
+los formatos relevantes (incluida la cuadrícula ESRI, geoTiff, netCDF,
+IDRISI). Los archivos ASCII pueden ser usados aunque estos tienden a
+reducir considerablemente la velocidad de procesamiento. Para cualquier
+estudio en particular, todas las capas deben tener la misma extensión
+espacial, resolución, origen y proyección. Si es necesario, use
+funciones como \emph{crop}, \emph{extend}, \emph{aggregate},
+\emph{resample} y \emph{projectRaster} desde el paquete \textbf{raster}.
+
+El paquete \textbf{dismo} trae cargadas varias variables provenientes de
+la base de datos de WorldClim (Hijmans et al., 2004) y los datos de
+biomas terrestres de la WWF (Olsen et al., 2001). A continuación
+desarrollemos los pasos para extraer los datos del paquete dismo y
+empaquetarlos en un stack que nos permita procesar en conjunto todas las
+variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Definimos el directorio donde están los archivos}
+\NormalTok{path <-}\StringTok{ }\KeywordTok{file.path}\NormalTok{(}\KeywordTok{system.file}\NormalTok{(}\DataTypeTok{package=}\StringTok{"dismo"}\NormalTok{), }\StringTok{'ex'}\NormalTok{)}
+\CommentTok{#obtenemos un listado de las variables tipo grd (grid) que están en dismo}
+\CommentTok{#grd$ nos permite obtener todos las variables grid}
+\KeywordTok{library}\NormalTok{(dismo)}
+\NormalTok{files <-}\StringTok{ }\KeywordTok{list.files}\NormalTok{(path, }\DataTypeTok{pattern=}\StringTok{'grd$'}\NormalTok{, }\DataTypeTok{full.names=}\OtherTok{TRUE} \NormalTok{)}
+\NormalTok{files}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio1.grd" 
+## [2] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio12.grd"
+## [3] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio16.grd"
+## [4] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio17.grd"
+## [5] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio5.grd" 
+## [6] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio6.grd" 
+## [7] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio7.grd" 
+## [8] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/bio8.grd" 
+## [9] "C:/Users/ciesp/Documents/R/win-library/3.5/dismo/ex/biome.grd"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#empaquetamos las variables en un stack}
+\NormalTok{predictors <-}\StringTok{ }\KeywordTok{stack}\NormalTok{(files)}
+\NormalTok{predictors}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class      : RasterStack 
+## dimensions : 192, 186, 35712, 9  (nrow, ncol, ncell, nlayers)
+## resolution : 0.5, 0.5  (x, y)
+## extent     : -125, -32, -56, 40  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+## names      : bio1, bio12, bio16, bio17, bio5, bio6, bio7, bio8, biome 
+## min values :  -23,     0,     0,     0,   61, -212,   60,  -66,     1 
+## max values :  289,  7682,  2458,  1496,  422,  242,  461,  323,    14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(predictors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "bio1"  "bio12" "bio16" "bio17" "bio5"  "bio6"  "bio7"  "bio8"  "biome"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(predictors)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-16-1.pdf} Vamos
+a graficar una de las variables y sobreponer los datos geopolíticos e
+incluir los datos de Desmodus que hemos limpiado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(maptools)}
+\CommentTok{#generamos un objeto tipo SpatialPoint}
+\NormalTok{desFD <-}\StringTok{ }\NormalTok{desmodFD}
+\KeywordTok{coordinates}\NormalTok{(desFD) <-}\StringTok{ }\ErrorTok{~}\NormalTok{lon+lat}
+\KeywordTok{projection}\NormalTok{(desFD) <-}\StringTok{ }\KeywordTok{CRS}\NormalTok{(}\StringTok{'+proj=longlat +datum=WGS84'}\NormalTok{)}
+
+\CommentTok{# Graficamos la primera variable climática}
+\KeywordTok{plot}\NormalTok{(predictors, }\DecValTok{1}\NormalTok{)}
+\CommentTok{# Adicionamos los límites políticos}
+\CommentTok{#usamos add=TRUE para que se sobreponga sobre el gráfico anterior}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\CommentTok{#finalmente adicionamos los datos de Desmodus}
+\KeywordTok{points}\NormalTok{(desFD, }\DataTypeTok{col=}\StringTok{"darkred"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{3}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+Obtener las variables explicativas es un paso muy importante, sobre todo
+si nuestro enfoque es predictivo y no explicativo. El modelado de
+distribución geográfica no busca comprender el efecto de las variables
+explicativas, sino más bien nos interesa tener capacidad para predecir
+la distribución. De esta forma, es vital tener variables que permitan
+realizar la predicción, para lo cual es importante conocer la ecología
+de la especie. Variables que son importantes para una especie pueden ser
+irrelevantes para otras, ej. una variable de suelo puede ser muy
+importante para una planta, pero irrelevante para un ave. En el proceso
+de modelado necesitamos contar con variables relevantes para la especie
+que estamos modelando.
+
+\subsubsection{Extrayendo los datos
+ambientales}\label{extrayendo-los-datos-ambientales}
+
+Ahora que tenemos tanto nuestras variables de presencia-ausencia como
+nuestras variables explicativas, el siguiente paso es extraer los
+valores de las variables explicativas. Cada punto de ocurrencia y
+ausencia le corresponde un valor de cada variable explicativa. Usaremos
+la función \emph{extract} del paquete \textbf{raster} para obtener los
+valores de las variables contenidas en el stack, usaremos tanto los
+datos de ocurrencia que limpiamos como los datos de fondo que generamos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#extraemos los valores}
+\NormalTok{presvals <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, desFD) }\CommentTok{#presencias}
+\NormalTok{absvals <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, bg) }\CommentTok{#datos de fondo}
+\NormalTok{seabsvals <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, xyInside) }\CommentTok{#pseudo-ausencias}
+
+\CommentTok{#generamos una variable de presencia ausencia}
+\NormalTok{pb <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(presvals)), }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(absvals)))}
+
+\CommentTok{#unimos los datos de presencia-ausencia y la juntamos con la variable}
+\CommentTok{#que acabamos de generar}
+\NormalTok{sdmdata <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(pb, }\KeywordTok{rbind}\NormalTok{(presvals, absvals)))}
+\CommentTok{#convertimos en factor la variable biome}
+\NormalTok{sdmdata[,}\StringTok{'biome'}\NormalTok{] =}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(sdmdata[,}\StringTok{'biome'}\NormalTok{])}
+\KeywordTok{head}\NormalTok{(sdmdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   pb bio1 bio12 bio16 bio17 bio5 bio6 bio7 bio8 biome
+## 1  1  245  1042   503    77  336  138  199  276     1
+## 2  1  202  2500   811   363  261  149  112  198     1
+## 3  1  208  1471   654   162  289  121  168  225     1
+## 4  1  255  3416  1491   194  330  190  139  248     1
+## 5  1  131   846   452    47  229   21  208  135     1
+## 6  1  233   679   286    77  356   84  272  276    13
+\end{verbatim}
+
+Ahora evaluamos las variables que están correlacionadas, es necesario
+que dentro del modelo evitemos usar variables que muestren colinearidad
+espacial. Para ello realizamos correlaciones entre variables para
+determinar que variables están asociadas y poder decidir que variables
+usar en el modelo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pairs}\NormalTok{(sdmdata[,}\DecValTok{2}\NormalTok{:}\DecValTok{5}\NormalTok{], }\DataTypeTok{cex=}\FloatTok{0.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+Como podemos observar las variables bio12 y bio16 están fuertemente
+correlacionadas. Por ahora nos quedaremos con las variables que hemos
+logrado obtener. Por ahora grabamos los datos para que estén disponibles
+para los siguientes análisis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{saveRDS}\NormalTok{(sdmdata, }\StringTok{"sdm.Rds"}\NormalTok{)}
+\KeywordTok{saveRDS}\NormalTok{(presvals, }\StringTok{"pvals.Rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ajuste del modelo, predicción y
+evaluación}\label{ajuste-del-modelo-prediccion-y-evaluacion}
+
+\subsubsection{Ajuste de un modelo}\label{ajuste-de-un-modelo}
+
+Ajustar un SDM (modelo espacial) es técnicamente similar a otras
+técnicas de modelado. Lo que haremos es identificar las variables
+dependientes en independientes. De esta forma la variable dependiente
+presencias-ausencias en relación a las variables ambientales. Vamos a
+ajustar un modelo lineal generalizado con los datos que hemos levantado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#leemos los datos}
+\KeywordTok{library}\NormalTok{(dismo)}
+\NormalTok{sdmdata <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"sdm.Rds"}\NormalTok{)}
+\NormalTok{presvals <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"pvals.Rds"}\NormalTok{)}
+
+\CommentTok{#Usamos unas pocas variables}
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(pb ~}\StringTok{ }\NormalTok{bio1 +}\StringTok{ }\NormalTok{bio5 +}\StringTok{ }\NormalTok{bio12, }\DataTypeTok{data=}\NormalTok{sdmdata)}
+\KeywordTok{summary}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = pb ~ bio1 + bio5 + bio12, data = sdmdata)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.5542  -0.2808  -0.2012   0.4465   0.9337  
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  8.900e-01  1.002e-01   8.884  < 2e-16 ***
+## bio1         2.141e-03  5.023e-04   4.263 2.31e-05 ***
+## bio5        -3.394e-03  5.066e-04  -6.700 4.44e-11 ***
+## bio12       -3.420e-05  2.431e-05  -1.407     0.16    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.1774249)
+## 
+##     Null deviance: 126.87  on 669  degrees of freedom
+## Residual deviance: 118.16  on 666  degrees of freedom
+## AIC: 748.8
+## 
+## Number of Fisher Scoring iterations: 2
+\end{verbatim}
+
+Ahora tenemos nuestro modelo, pero como habíamos dicho, no nos interesa
+saber si estas variables afectan significativamente la presencia de
+especies, sino poder realizar predicciones a partir de este modelo.
+
+\subsubsection{Predicciones}\label{predicciones}
+
+Usaremos el modelo para predecir la probabilidad de ocurrencia de esta
+especie en unas zonas con diferentes condiciones ambientales. Usaremos
+la función \emph{predict} para proyectar la probabilidad de ocurrencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#generamos unos valores para cada una de las}
+\CommentTok{#variables usadas en el modelo}
+
+\NormalTok{bio1 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{150}\NormalTok{, }\DecValTok{200}\NormalTok{)}
+\NormalTok{bio5 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{115}\NormalTok{, }\DecValTok{290}\NormalTok{)}
+\NormalTok{bio12 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{600}\NormalTok{, }\DecValTok{1600}\NormalTok{, }\DecValTok{1700}\NormalTok{)}
+
+\CommentTok{#Las unimos en un data.frame}
+\NormalTok{pd =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(bio1, bio5, bio12))}
+\NormalTok{pd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   bio1 bio5 bio12
+## 1   40   60   600
+## 2  150  115  1600
+## 3  200  290  1700
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#predecimos la probabilidad de ocurrencia en esos sitios}
+\KeywordTok{predict}\NormalTok{(m1, pd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         1         2         3 
+## 0.7514777 0.7661183 0.2757831
+\end{verbatim}
+
+Como vemos la probabilidad de ocurrencia en los sitios 1 y 2 son mayores
+al sitio 3. Pero, ¿Cómo las variables influencian la ocurrencia? Podemos
+utilizar la función \emph{response} para ver cómo cada una de estas
+variables determina la ocurrencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{response}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Como vemos bio5 tiene un efecto más fuerte sobre la probabilidad de
+ocurrencia de la especie.
+
+Ahora, como lo que nos interesa que las probabilidades de ocurrencia se
+muestren en el espacio, utilizaremos el paquete \textbf{raster} y la
+función predict para espacializar el modelo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Extraemos las variables}
+\NormalTok{predictors <-}\StringTok{ }\KeywordTok{stack}\NormalTok{(}\KeywordTok{list.files}\NormalTok{(}\KeywordTok{file.path}\NormalTok{(}\KeywordTok{system.file}\NormalTok{(}\DataTypeTok{package=}\StringTok{"dismo"}\NormalTok{), }\StringTok{'ex'}\NormalTok{), }\DataTypeTok{pattern=}\StringTok{'grd$'}\NormalTok{, }\DataTypeTok{full.names=}\OtherTok{TRUE} \NormalTok{))}
+\KeywordTok{names}\NormalTok{(predictors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "bio1"  "bio12" "bio16" "bio17" "bio5"  "bio6"  "bio7"  "bio8"  "biome"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#realizamos la predicción en base al modelo 1}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, m1)}
+\CommentTok{#graficamos}
+\KeywordTok{plot}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\subsubsection{Evaluación del modelo}\label{evaluacion-del-modelo}
+
+Como vemos resulta ser bastante sencillo, hacer un modelo y mostrarlo en
+el espacio. Sin embargo, lo que nos interesa es saber si este modelo
+predice efectivamente la ocurrencia de las especies. Existen muchas
+formas de evaluar el ajuste de un modelo y estas son dependientes del
+modelo que se esté usando. Uno de los métodos más utilizados para
+realizar una evaluación de los SDM es la validación cruzada
+(cross-validation).
+
+La validación cruzada consiste en crear un modelo con un conjunto de
+datos de ``entrenamiento'' y probarlo con otro conjunto de datos de
+ocurrencias conocidas, datos de ``prueba''. Por lo general, los datos de
+entrenamiento y prueba se crean muestreando aleatoriamente (sin
+reemplazo) el conjunto de datos que hemos logrado recabar.
+
+Se pueden usar diferentes medidas para evaluar la calidad de una
+predicción (Fielding y Bell, 1997, Liu et al., 2011; y Potts, para datos
+de presencia y Elith 2006 para datos de abundancia), dependiendo del
+objetivo del estudio. Muchas medidas para evaluar modelos basadas en
+datos de presencia-ausencia son ``dependientes del umbral''. Eso
+significa que primero se debe establecer un umbral sobre el cual se
+considera que la especie ocurre (por ejemplo, 0.5, aunque 0.5 rara vez
+es una opción sensata, por ejemplo, ver Lui et al. 2005). Los valores
+pronosticados por encima de ese umbral indican una predicción de
+``presencia'', y los valores por debajo del umbral indican ``ausencia''.
+
+Las estadísticas más utilizadas, que son independientes del umbral son
+el coeficiente de correlación y el área bajo la curva del operador
+receptor (AUROC, generalmente abreviado como AUC). AUC es una medida de
+correlación de rango. En datos imparciales, un AUC alto indica que los
+sitios con valores de aptitud predichos altos tienden a ser áreas de
+presencia conocida y las ubicaciones con valores de predicción modelo
+más bajos tienden a ser áreas donde no se sabe que la especie esté
+presente (ausente o un punto aleatorio). Un puntaje de AUC de 0.5
+significa que el modelo es tan bueno como una suposición aleatoria. Ver
+Phillips et al. (2006) para una discusión sobre el uso de AUC en el
+contexto de datos de solo presencia en lugar de datos de presencia /
+ausencia. Normalmente, modelos por arriba de 0.75 de AUC son modelos
+considerados aceptables.
+
+Para ejemplificar, vamos a realizar un modelo usando Bioclim un modelo
+que usa solo datos de presencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#sacamos el 75% de los datos para entrenamiento}
+\NormalTok{samp <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(sdmdata), }\KeywordTok{round}\NormalTok{(}\FloatTok{0.75} \NormalTok{*}\StringTok{ }\KeywordTok{nrow}\NormalTok{(sdmdata)))}
+\NormalTok{traindata <-}\StringTok{ }\NormalTok{sdmdata[samp,]}
+
+\CommentTok{#Eliminamos las ausencias}
+\NormalTok{traindata <-}\StringTok{ }\NormalTok{traindata[traindata[,}\DecValTok{1}\NormalTok{] ==}\StringTok{ }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{:}\DecValTok{9}\NormalTok{]}
+
+\CommentTok{#El 25% restante queda como datos de prueba}
+\NormalTok{testdata <-}\StringTok{ }\NormalTok{sdmdata[-samp,]}
+
+\CommentTok{#Hacemos el modelo con datos de entrenamiento}
+\NormalTok{bc <-}\StringTok{ }\KeywordTok{bioclim}\NormalTok{(traindata)}
+
+\CommentTok{#evaluamos presencias y ausencias}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(testdata[testdata==}\DecValTok{1}\NormalTok{,], testdata[testdata==}\DecValTok{0}\NormalTok{,], bc)}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 41 
+## n absences     : 127 
+## AUC            : 0.6497983 
+## cor            : 0.1867107 
+## max TPR+TNR at : 0.04641163
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Graficamos el resultado}
+\KeywordTok{plot}\NormalTok{(e, }\StringTok{'ROC'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+Lo que podemos ver es que nuestro modelo no es diferente a una
+distribución aleatoria, en otras palabras aunque tenemos un modelo este
+no predice la distribución de esta especie, la predicción es cercana a
+un modelo de ocurrencia aleatoria. Más adelante volveremos a la
+evaluación de los modelos.
+
+\subsection{Métodos de modelamiento}\label{metodos-de-modelamiento}
+
+\subsubsection{Tipos de algoritmos
+usados}\label{tipos-de-algoritmos-usados}
+
+Una gran cantidad de algoritmos han sido utilizados para desarrollar
+SDM. Estos algoritmos pueden ser clasificados en tres tipos; i)
+envuelta, ii) regresión y iii) aprendizaje automático (Machine
+learning). Los algoritmos de envuelta consideran solamente los datos de
+presencia. Los otros dos tipos de algoritmos usan datos de presencia y
+ausencia.
+
+Vamos a utilizar datos de una especie del \emph{Desmodus rotundus} que
+hemos limpiado. Además, extraeremos los datos de las variables
+independientes que usaremos y, finalmente, dividiremos los datos en
+entrenamiento y validación.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dismo)}
+\KeywordTok{library}\NormalTok{(maptools)}
+\KeywordTok{data}\NormalTok{(wrld_simpl)}
+
+\CommentTok{#extraemos los datos bioclimáticos}
+\NormalTok{predictors <-}\StringTok{ }\KeywordTok{stack}\NormalTok{(}\KeywordTok{list.files}\NormalTok{(}\KeywordTok{file.path}\NormalTok{(}\KeywordTok{system.file}\NormalTok{(}\DataTypeTok{package=}\StringTok{"dismo"}\NormalTok{), }\StringTok{'ex'}\NormalTok{), }\DataTypeTok{pattern=}\StringTok{'grd$'}\NormalTok{, }\DataTypeTok{full.names=}\OtherTok{TRUE} \NormalTok{))}
+
+\CommentTok{#obtenemos los datos de cada predictor para nuestros datos de presencia}
+\NormalTok{presvals <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, desFD)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{#Generamos datos de fondo}
+\NormalTok{backgr <-}\StringTok{ }\KeywordTok{randomPoints}\NormalTok{(predictors, }\DecValTok{500}\NormalTok{)}
+
+\CommentTok{#Extraemos los datos de cada predictor de los datos de fondo}
+\NormalTok{absvals <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, backgr)}
+
+\CommentTok{#Generamos un vector de presencia ausencia}
+\NormalTok{pb <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(presvals)), }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(absvals)))}
+
+\CommentTok{#Unimos todo}
+\NormalTok{sdmdata <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(pb, }\KeywordTok{rbind}\NormalTok{(presvals, absvals)))}
+\NormalTok{sdmdata[,}\StringTok{'biome'}\NormalTok{] <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(sdmdata[,}\StringTok{'biome'}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Debido a que algunos algoritmos no admiten variables categóricas
+eliminaremos del stack la variable de bioma.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred_nf <-}\StringTok{ }\KeywordTok{dropLayer}\NormalTok{(predictors, }\StringTok{'biome'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora dividimos los datos en entrenamiento y prueba.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{#generamos 5 grupos aleatorios}
+\NormalTok{group <-}\StringTok{ }\KeywordTok{kfold}\NormalTok{(desmodFD, }\DecValTok{5}\NormalTok{)}
+
+\CommentTok{#Escogemos un grupo de prueba y el resto de entrenamiento}
+\NormalTok{pres_train <-}\StringTok{ }\NormalTok{desmodFD[group !=}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
+\NormalTok{pres_test <-}\StringTok{ }\NormalTok{desmodFD[group ==}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
+
+\CommentTok{#Restringimos la predicción }
+\NormalTok{ext <-}\StringTok{ }\KeywordTok{extent}\NormalTok{(-}\DecValTok{110}\NormalTok{, -}\DecValTok{32}\NormalTok{, -}\DecValTok{33}\NormalTok{, }\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Generamos los datos de fondo que deberán ser separados entre
+entrenamiento y prueba. Para evitar que los datos de entrenamiento
+tengan NA o estén fuera del marco establecido vamos a usar el argumento
+\emph{extf} que nos permite limitar la generación de los puntos de fondo
+hasta un 12.5\% del limite.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Generamos los datos de fondo}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{backg <-}\StringTok{ }\KeywordTok{randomPoints}\NormalTok{(pred_nf, }\DataTypeTok{n=}\DecValTok{1000}\NormalTok{, }\DataTypeTok{ext=}\NormalTok{ext, }\DataTypeTok{extf =} \NormalTok{-}\FloatTok{1.25}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(backg) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'lon'}\NormalTok{, }\StringTok{'lat'}\NormalTok{)}
+\NormalTok{group <-}\StringTok{ }\KeywordTok{kfold}\NormalTok{(backg, }\DecValTok{5}\NormalTok{)}
+
+\CommentTok{#separamos datos de entrenamiento y prueba}
+\NormalTok{backg_train <-}\StringTok{ }\NormalTok{backg[group !=}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
+\NormalTok{backg_test <-}\StringTok{ }\NormalTok{backg[group ==}\StringTok{ }\DecValTok{1}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora graficamos la información que hemos obtenido para confirmar que
+todo esté bien. Usaremos uno de los predictores como marco de la figura.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Extraemos los datos del raster }
+\NormalTok{r <-}\StringTok{ }\KeywordTok{raster}\NormalTok{(pred_nf, }\DecValTok{1}\NormalTok{)}
+
+\CommentTok{#Graficamos el raster}
+\KeywordTok{plot}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(r), }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{'white'}\NormalTok{, }\StringTok{'light grey'}\NormalTok{), }\DataTypeTok{legend=}\OtherTok{FALSE}\NormalTok{)}
+
+\CommentTok{#graficamos la ventana}
+\KeywordTok{plot}\NormalTok{(ext, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{'red'}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\CommentTok{#graficamos los puntos de fondo}
+\KeywordTok{points}\NormalTok{(backg_train, }\DataTypeTok{pch=}\StringTok{'-'}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.9}\NormalTok{, }\DataTypeTok{col=}\StringTok{'yellow'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(backg_test, }\DataTypeTok{pch=}\StringTok{'-'}\NormalTok{,  }\DataTypeTok{cex=}\FloatTok{0.9}\NormalTok{, }\DataTypeTok{col=}\StringTok{'black'}\NormalTok{)}
+\CommentTok{#graficamos los puntos de ocurrencia}
+\KeywordTok{points}\NormalTok{(pres_train$lon, pres_train$lat, }\DataTypeTok{pch=} \StringTok{'+'}\NormalTok{, }\DataTypeTok{col=}\StringTok{'green'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_test$lon, pres_test$lat, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{, }\DataTypeTok{col=}\StringTok{'blue'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+Al parecer todo está donde debería estar, ahora podemos ajustar los
+diferentes modelos utilizando la información que hemos preparado.
+
+\subsubsection{Algoritmos de Envuelta}\label{algoritmos-de-envuelta}
+
+A continuación vamos a usar tres diferentes algoritmos para realizar
+nuestros modelos; BIOCLIM, DOMAIN y distancia de MAHALANOBIS. Como lo
+mencionamos anteriormente estos algoritmos usan únicamente los datos de
+presencia. Aunque estos modelos han sido ampliamente utilizados, según
+algunos autores, estos modelos son menos efectivos que otros,
+particularmente cuando son utilizados para evaluar cambio climático. El
+algoritmo BIOCLIM calcula la similitud de una ubicación comparando los
+valores de las variables ambientales en cualquier ubicación con una
+distribución porcentual de los valores en ubicaciones conocidas de
+ocurrencia (``sitios de entrenamiento'').
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ajustamos el algoritmo a nuestros datos}
+\NormalTok{bc <-}\StringTok{ }\KeywordTok{bioclim}\NormalTok{(pred_nf, pres_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)])}
+\CommentTok{#evaluamos el modelo}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(pres_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)], backg_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)], bc, pred_nf)}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.6017647 
+## cor            : 0.04966259 
+## max TPR+TNR at : 0.05872353
+\end{verbatim}
+
+Como vemos el modelo generado con BIOCLIM no ajusta adecuadamente (AUC
+0.61).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Definimos a que nivel se realizará el corte de presencia-ausencia }
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(e, }\StringTok{'spec_sens'}\NormalTok{)}
+\NormalTok{tr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05872353
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Extrapolamos los datos a un área de interés}
+\NormalTok{pb <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(pred_nf, bc, }\DataTypeTok{ext=}\NormalTok{ext, }\DataTypeTok{progress=}\StringTok{''}\NormalTok{)}
+
+\CommentTok{#graficamos el modelo}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pb, }\DataTypeTok{main=}\StringTok{'Bioclim, raw values'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pb >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-32-1.pdf}
+
+El algoritmo de Domain (Carpenter et al. 1993) calcula la distancia de
+Gower entre las variables ambientales en cualquier ubicación y de estas
+en las ubicaciones de ocurrencia (``sitios de entrenamiento''). A
+continuación, ajustamos un modelo de dominio, lo evaluamos y hacemos una
+predicción. Mapeamos la predicción, así como un mapa clasificado
+subjetivamente en presencia / ausencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#generamos el modelo}
+\NormalTok{dm <-}\StringTok{ }\KeywordTok{domain}\NormalTok{(pred_nf, pres_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)])}
+
+\CommentTok{#lo evaluamos}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(pres_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)], backg_test, dm, pred_nf)}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.5425 
+## cor            : 0.1253585 
+## max TPR+TNR at : 0.4919958
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#predecimos en el espacio}
+\NormalTok{pd =}\StringTok{ }\KeywordTok{predict}\NormalTok{(pred_nf, dm, }\DataTypeTok{ext=}\NormalTok{ext, }\DataTypeTok{progress=}\StringTok{''}\NormalTok{)}
+
+\CommentTok{#graficamos el modelo}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pd, }\DataTypeTok{main=}\StringTok{'Domain, raw values'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(e, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pd >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+Finalmente ajustamos el algoritmo Malahanobis. La función \emph{mahal}
+implementa un modelo de distribución de especies basado en la distancia
+de Mahalanobis (Mahalanobis, 1936). La distancia de Mahalanobis tiene en
+cuenta las correlaciones de las variables en el conjunto de datos, y no
+depende de la escala de mediciones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ajustamos el modelo}
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{mahal}\NormalTok{(pred_nf, pres_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)])}
+
+\CommentTok{#lo evaluamos}
+\NormalTok{em <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(pres_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)], backg_test, mm, pred_nf)}
+\NormalTok{em}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.7479412 
+## cor            : 0.1532754 
+## max TPR+TNR at : -1.133013
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#predecimos}
+\NormalTok{pm =}\StringTok{ }\KeywordTok{predict}\NormalTok{(pred_nf, mm, }\DataTypeTok{ext=}\NormalTok{ext, }\DataTypeTok{progress=}\StringTok{''}\NormalTok{)}
+
+\CommentTok{#Los graficamos}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{pm[pm <}\StringTok{ }\NormalTok{-}\DecValTok{10}\NormalTok{] <-}\StringTok{ }\NormalTok{-}\DecValTok{10}
+\KeywordTok{plot}\NormalTok{(pm, }\DataTypeTok{main=}\StringTok{'Mahalanobis distance'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(e, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pm >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\subsubsection{Modelos de regresiones}\label{modelos-de-regresiones}
+
+Los modelos de regresiones se ajustan a los datos de presencia y
+ausencia (fondo). No podemos ajustar el modelo con un RasterStack y
+puntos. Lo que haremos es extraer los valores de los datos ambientales y
+ajustar los modelos con estos valores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#pegamos los datos de presencia y ausencia}
+\CommentTok{#Las coordenadas}
+\NormalTok{train <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(pres_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)], backg_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)])}
+\CommentTok{#la variable de ocurrencia}
+\NormalTok{pb_train <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(pres_train)), }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{nrow}\NormalTok{(backg_train)))}
+
+\CommentTok{#Extraemos los datos ambientales de entrenamiento}
+\NormalTok{envtrain <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(predictors, train)}
+\NormalTok{envtrain <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{pa=}\NormalTok{pb_train, envtrain) )}
+\NormalTok{envtrain[,}\StringTok{'biome'}\NormalTok{] =}\StringTok{ }\KeywordTok{factor}\NormalTok{(envtrain[,}\StringTok{'biome'}\NormalTok{], }\DataTypeTok{levels=}\DecValTok{1}\NormalTok{:}\DecValTok{14}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(envtrain)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   pa bio1 bio12 bio16 bio17 bio5 bio6 bio7 bio8 biome
+## 1  1  245  1042   503    77  336  138  199  276     1
+## 2  1  208  1471   654   162  289  121  168  225     1
+## 3  1  255  3416  1491   194  330  190  139  248     1
+## 4  1  131   846   452    47  229   21  208  135     1
+## 5  1  270  1190   501   141  322  216  106  268    13
+## 6  1  210  1429   638    81  302  127  175  218     3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Extraemos los datos ambientales de evaluación}
+\NormalTok{testpres <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{extract}\NormalTok{(predictors, pres_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)]) )}
+\NormalTok{testbackg <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{( }\KeywordTok{extract}\NormalTok{(predictors, backg_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{,}\StringTok{"lat"}\NormalTok{)]) )}
+\NormalTok{testpres[ ,}\StringTok{'biome'}\NormalTok{] =}\StringTok{ }\KeywordTok{factor}\NormalTok{(testpres[ ,}\StringTok{'biome'}\NormalTok{], }\DataTypeTok{levels=}\DecValTok{1}\NormalTok{:}\DecValTok{14}\NormalTok{)}
+\NormalTok{testbackg[ ,}\StringTok{'biome'}\NormalTok{] =}\StringTok{ }\KeywordTok{factor}\NormalTok{(testbackg[ ,}\StringTok{'biome'}\NormalTok{], }\DataTypeTok{levels=}\DecValTok{1}\NormalTok{:}\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Modelos Lineales Generalizados} Un modelo lineal generalizado
+(GLM) es una generalización de la regresión de mínimos cuadrados
+ordinarios. Los modelos se ajustan utilizando la máxima verosimilitud y
+permitiendo que el modelo lineal se relacione con la variable de
+respuesta a través de una función de enlace y permitiendo que la
+magnitud de la varianza de cada medición sea una función de su valor
+predicho. Dependiendo de cómo se especifique un GLM, puede ser
+equivalente a la regresión lineal (múltiple), la regresión logística o
+la regresión de Poisson. Ver Guisan et al (2002) para una visión general
+del uso de GLM en el modelado de distribución de especies.
+
+A continuación ajustaremos dos modelos lineales generalizados con
+diferente función de enlace.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Usamos una regresión logística}
+\NormalTok{gm1 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(pa ~}\StringTok{ }\NormalTok{bio16 +}\StringTok{ }\NormalTok{bio5 +}\StringTok{ }\NormalTok{bio6 +}\StringTok{ }\NormalTok{bio17 +}\StringTok{ }\NormalTok{bio12,}
+            \DataTypeTok{family =} \KeywordTok{binomial}\NormalTok{(}\DataTypeTok{link =} \StringTok{"logit"}\NormalTok{), }\DataTypeTok{data=}\NormalTok{envtrain)}
+\KeywordTok{summary}\NormalTok{(gm1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = pa ~ bio16 + bio5 + bio6 + bio17 + bio12, family = binomial(link = "logit"), 
+##     data = envtrain)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6339  -0.5719  -0.4226  -0.2666   2.6045  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  2.9804205  0.6866848   4.340 1.42e-05 ***
+## bio16        0.0050720  0.0014054   3.609 0.000307 ***
+## bio5        -0.0190642  0.0026575  -7.174 7.30e-13 ***
+## bio6         0.0036771  0.0019862   1.851 0.064118 .  
+## bio17        0.0008156  0.0018642   0.437 0.661761    
+## bio12       -0.0019073  0.0007152  -2.667 0.007655 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 775.88  on 935  degrees of freedom
+## Residual deviance: 679.67  on 930  degrees of freedom
+## AIC: 691.67
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ajustamos un GLM con una función gaussian}
+
+\NormalTok{gm2 <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(pa ~}\StringTok{  }\NormalTok{bio1+bio5 +}\StringTok{ }\NormalTok{bio6 +}\StringTok{ }\NormalTok{bio7 +}\StringTok{ }\NormalTok{bio8 +}\StringTok{ }\NormalTok{bio12 +}\StringTok{ }\NormalTok{bio16 +}\StringTok{ }\NormalTok{bio17,}
+            \DataTypeTok{family =} \KeywordTok{gaussian}\NormalTok{(}\DataTypeTok{link =} \StringTok{"identity"}\NormalTok{), }\DataTypeTok{data=}\NormalTok{envtrain)}
+
+\CommentTok{#Evaluamos el modelo 1}
+\NormalTok{ge1 <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(testpres, testbackg, gm1)}
+\NormalTok{ge1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.7447059 
+## cor            : 0.3147866 
+## max TPR+TNR at : -1.825892
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Evaluamos el modelo 2}
+\NormalTok{ge2 <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(testpres, testbackg, gm2)}
+\NormalTok{ge2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.7266176 
+## cor            : 0.313569 
+## max TPR+TNR at : 0.1751886
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Predecimos la distribución con el primer modelo}
+\NormalTok{pg1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, gm1, }\DataTypeTok{ext=}\NormalTok{ext)}
+\NormalTok{pg2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, gm2, }\DataTypeTok{ext=}\NormalTok{ext)}
+\CommentTok{#Graficamos}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pg1, }\DataTypeTok{main=}\StringTok{'GLM/logistic, raw values'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(ge1, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pg1 >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(backg_train, }\DataTypeTok{pch=}\StringTok{'-'}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\subsubsection{Modelos de aprendizaje
+automático}\label{modelos-de-aprendizaje-automatico}
+
+Dentro de los algoritmos de aprendizaje automatizado MaxEnt (abreviatura
+de ``Entropía máxima''; Phillips et al., 2006) es el algoritmo SDM más
+utilizado. Maxent se encuentra implementado en Java pero puede ser
+ejecutado desde el paquete \textbf{dismo}. Si se encuentra con una
+versión de R superior a 3.5, Maxent no se encuentra disponible para esta
+versión. Sin embargo, puede descargar Maxent haciendo clic
+\href{http://biodiversityinformatics.amnh.org/open_source/maxent/}{aquí}.
+Una vez descargada esta versión vaya a la libreria de R, busque el
+paquete dismo y la carpeta java, copie y peque el ejecutable de maxent
+en esta carpeta. La dirección debería ser similar a esta
+``\ldots{}.R/win-library/3.5/dismo/java''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Cargamos maxent}
+\KeywordTok{maxent}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required namespace: rJava
+\end{verbatim}
+
+\begin{verbatim}
+## This is MaxEnt version 3.4.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ajustamos el modelo}
+\CommentTok{#Es necesario informar a maxent las variables que se encuentran como factores}
+\NormalTok{mx <-}\StringTok{ }\KeywordTok{maxent}\NormalTok{(predictors, pres_train[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{, }\StringTok{"lat"}\NormalTok{)], }\DataTypeTok{factors=}\StringTok{'biome'}\NormalTok{)}
+
+\CommentTok{#Graficamos las variables y su importancia}
+\KeywordTok{plot}\NormalTok{(mx)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{response}\NormalTok{(mx)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-37-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Realizamos la evaluación del modelo}
+\NormalTok{emx <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(pres_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{, }\StringTok{"lat"}\NormalTok{)], backg_test[,}\KeywordTok{c}\NormalTok{(}\StringTok{"lon"}\NormalTok{, }\StringTok{"lat"}\NormalTok{)], mx, predictors)}
+\NormalTok{emx}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.8197059 
+## cor            : 0.5213534 
+## max TPR+TNR at : 0.6323841
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Predecimos}
+\NormalTok{px <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, mx, }\DataTypeTok{ext=}\NormalTok{ext, }\DataTypeTok{progress=}\StringTok{''}\NormalTok{)}
+
+\CommentTok{#Graficamos}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(px, }\DataTypeTok{main=}\StringTok{'Maxent, raw values'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(e, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(px >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-37-3.pdf}
+
+Otro método que durante los últimos años se ha desarrollado es el método
+Random Forest (Breiman, 2001b), este es una extensión de los árboles de
+clasificación y regresión (CART; Breiman et al., 1984). En R se
+implementa en la función `randomForest' en un paquete con el mismo
+nombre. La función randomForest puede tomar una fórmula o, en dos
+argumentos separados, un marco de datos con las variables predictoras y
+un vector con la respuesta. Si la variable de respuesta es un factor
+(categórico), randomForest hará una clasificación, de lo contrario hará
+una regresión. Mientras que con el modelo de distribución de especies a
+menudo estamos interesados en la clasificación (la especie está presente
+o no), el uso de la regresión proporciona mejores resultados. rf1 hace
+regresión, rf2 y rf3 hacen clasificación (son exactamente los mismos
+modelos). Consulte la función tuneRF para optimizar el procedimiento de
+ajuste del modelo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(randomForest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'randomForest' was built under R version 3.5.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Ajustamos el modelo}
+\NormalTok{model <-}\StringTok{ }\NormalTok{pa ~}\StringTok{ }\NormalTok{bio16 +}\StringTok{ }\NormalTok{bio5 +}\StringTok{ }\NormalTok{bio6 +}\StringTok{ }\NormalTok{bio17 +}\StringTok{ }\NormalTok{bio12}
+\NormalTok{rf1 <-}\StringTok{ }\KeywordTok{randomForest}\NormalTok{(model, }\DataTypeTok{data=}\NormalTok{envtrain)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in randomForest.default(m, y, ...): The response has five or fewer
+## unique values. Are you sure you want to do regression?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(pa) ~}\StringTok{ }\NormalTok{bio16 +}\StringTok{ }\NormalTok{bio5 +}\StringTok{ }\NormalTok{bio6 +}\StringTok{ }\NormalTok{bio17 +}\StringTok{ }\NormalTok{bio12}
+\NormalTok{rf2 <-}\StringTok{ }\KeywordTok{randomForest}\NormalTok{(model, }\DataTypeTok{data=}\NormalTok{envtrain)}
+\NormalTok{rf3 <-}\StringTok{ }\KeywordTok{randomForest}\NormalTok{(envtrain[,}\DecValTok{1}\NormalTok{:}\DecValTok{8}\NormalTok{], }\KeywordTok{factor}\NormalTok{(pb_train))}
+
+\CommentTok{#Evaluamos el modelo usamos unicamente el primero}
+\NormalTok{erf <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(testpres, testbackg, rf1)}
+\NormalTok{erf}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.7736765 
+## cor            : 0.3843336 
+## max TPR+TNR at : 0.1684238
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#predecimos}
+\NormalTok{pr <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, rf1, }\DataTypeTok{ext=}\NormalTok{ext)}
+
+\CommentTok{#graficamos}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pr, }\DataTypeTok{main=}\StringTok{'Random Forest, regression'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(erf, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(pr >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(backg_train, }\DataTypeTok{pch=}\StringTok{'-'}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+Support Vector Machines (SVMs; Vapnik, 1998) aplica un método lineal
+simple a los datos, pero en un espacio de características de alta
+dimensión no relacionado linealmente con el espacio de entrada, pero en
+la práctica, no implica ningún cálculo en esa alta dimensión del
+espacio. Esta simplicidad combinada con el rendimiento de vanguardia en
+muchos problemas de aprendizaje (clasificación, regresión y detección de
+novedad) ha contribuido a la popularidad de la SVM (Karatzoglou et al.,
+2006). Fueron utilizados por primera vez en modelos de distribución de
+especies por Guo et al. (2005). Existen varias implementaciones de svm
+en R. Las implementaciones más útiles en nuestro contexto son
+probablemente la función ``ksvm'' en el paquete ``kernlab''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kernlab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'kernlab' was built under R version 3.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kernlab'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:raster':
+## 
+##     buffer, rotated
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{svm <-}\StringTok{ }\KeywordTok{ksvm}\NormalTok{(pa ~}\StringTok{ }\NormalTok{bio16 +}\StringTok{ }\NormalTok{bio5 +}\StringTok{ }\NormalTok{bio6 +}\StringTok{ }\NormalTok{bio17 +}\StringTok{ }\NormalTok{bio12, }\DataTypeTok{data=}\NormalTok{envtrain)}
+\NormalTok{esv <-}\StringTok{ }\KeywordTok{evaluate}\NormalTok{(testpres, testbackg, svm)}
+\NormalTok{esv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## class          : ModelEvaluation 
+## n presences    : 34 
+## n absences     : 200 
+## AUC            : 0.7601471 
+## cor            : 0.3232351 
+## max TPR+TNR at : 0.03340697
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Hacemos la predicción}
+\NormalTok{ps <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(predictors, svm, }\DataTypeTok{ext=}\NormalTok{ext)}
+
+\CommentTok{#Graficamos}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(ps, }\DataTypeTok{main=}\StringTok{'Support Vector Machine'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\NormalTok{tr <-}\StringTok{ }\KeywordTok{threshold}\NormalTok{(esv, }\StringTok{'spec_sens'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(ps >}\StringTok{ }\NormalTok{tr, }\DataTypeTok{main=}\StringTok{'presence/absence'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(wrld_simpl, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\StringTok{'dark grey'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(pres_train, }\DataTypeTok{pch=}\StringTok{'+'}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(backg_train, }\DataTypeTok{pch=}\StringTok{'-'}\NormalTok{, }\DataTypeTok{cex=}\FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\subsection{Combinando predicciones del
+modelo}\label{combinando-predicciones-del-modelo}
+
+En lugar de confiar en un solo ``mejor'' modelo, algunos autores (por
+ejemplo, Thuillier, 2003) han abogado por utilizar muchos modelos y
+aplicar algún tipo de promedio de modelos. Vea el paquete biomod2 para
+una implementación. Por supuesto, puede implementar estos enfoques usted
+mismo. A continuación se muestra un ejemplo muy breve. Primero hacemos
+un RasterStack de nuestras predicciones de modelos individuales:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#modelos con AUC mayor a 0.70}
+\NormalTok{models <-}\StringTok{ }\KeywordTok{stack}\NormalTok{( pg1, pg2,px,pr,ps)}
+\KeywordTok{names}\NormalTok{(models) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"glmLog"}\NormalTok{,}\StringTok{"glmGau"}\NormalTok{, }\StringTok{"maxent"}\NormalTok{, }\StringTok{"rf"}\NormalTok{, }\StringTok{"svm"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(models)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Calculamos la media}
+\NormalTok{m <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(models)}
+\KeywordTok{plot}\NormalTok{(m, }\DataTypeTok{main=}\StringTok{'average score'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#como una media pesada por el AUC}
+
+\NormalTok{auc <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}\KeywordTok{list}\NormalTok{(emx,ge1, ge2, erf, esv), function(x) x@auc)}
+\NormalTok{w <-}\StringTok{ }\NormalTok{(auc}\FloatTok{-0.5}\NormalTok{)^}\DecValTok{2}
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{weighted.mean}\NormalTok{( models, w)}
+\KeywordTok{plot}\NormalTok{(m2, }\DataTypeTok{main=}\StringTok{'weighted mean of three models'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+
+\end{document}

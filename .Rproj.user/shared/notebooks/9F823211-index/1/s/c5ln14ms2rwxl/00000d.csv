@@ -1,0 +1,9 @@
+"0","plot(m2, main='weighted mean of three models')
+"
+"2","Warning in gzfile(file, ""wb"") :"
+"2","
+ "
+"2"," cannot open compressed file 'C:/Users/ciesp/Dropbox/Civan_UTPL_2014/Docencia_Civan/Biología/Ecologia Poblaciones y Comunidades/Prácticas/Propiedades de la poblacion/.Rproj.user/shared/notebooks/B356E85F-Ejer.Propiedades de la poblacion/1/513D8A8F/c5ln14ms2rwxl_t/406b1874bdb74a28a9ee2d88fd7a95f0.snapshot', probable reason 'No such file or directory'
+"
+"2","Error in gzfile(file, ""wb"") : cannot open the connection
+"

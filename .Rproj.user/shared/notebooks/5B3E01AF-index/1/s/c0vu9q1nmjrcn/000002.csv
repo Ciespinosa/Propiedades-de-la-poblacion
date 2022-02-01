@@ -1,0 +1,5 @@
+"0","csDes$country <- droplevels(csDes$country, exclude = 0)
+"
+"2","Error in UseMethod(""droplevels"") : 
+  no applicable method for 'droplevels' applied to an object of class ""character""
+"

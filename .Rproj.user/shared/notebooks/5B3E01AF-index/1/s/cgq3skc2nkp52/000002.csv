@@ -1,0 +1,18 @@
+"0","library(dismo)"
+"2","Loading required package: raster
+"
+"2","Loading required package: sp
+"
+"0","# Usar las dos líneas de código a continuación para extraer "
+"0","#los datos de GBIF y guardarlos en su computador"
+"0",""
+"0","#La siguiente línea extrae los datos "
+"0","# desGbif <- gbif(""Desmodus"", ""rotundus"", geo = TRUE) "
+"0",""
+"0","#La siguiente línea graba los datos en su disco duro"
+"0","# write.csv(desGbif, ""desGbif.csv"")"
+"0",""
+"0","#La siguiente vez que realice el trabajo, ejecute solo leer los datos del disco duro"
+"0",""
+"0","desGbif <- read.csv(""desGbif.csv"")"
+"0",""

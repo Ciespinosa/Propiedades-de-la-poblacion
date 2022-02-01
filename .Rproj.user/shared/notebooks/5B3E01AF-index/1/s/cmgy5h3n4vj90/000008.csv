@@ -1,0 +1,2 @@
+"0","# plot points again to add a border, for better visibility"
+"0","points(desmod$lon, desmod$lat, col='red', cex=0.75)"

@@ -1,0 +1,1 @@
+{"frames":[{"func":"droplevels(csDes$country, exclude = 0)","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in UseMethod(\"droplevels\") : \n  no applicable method for 'droplevels' applied to an object of class \"character\"\n"}

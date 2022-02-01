@@ -1,0 +1,2 @@
+"0","# Adicionamos los puntos de ocurrencia"
+"0","points(desGbif$lon, desGbif$lat, bg='orange', pch=21, cex=0.75)"

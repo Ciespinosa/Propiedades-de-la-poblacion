@@ -1,9 +1,0 @@
-"0","plot(m, main='average score')
-"
-"2","Warning in gzfile(file, ""wb"") :"
-"2","
- "
-"2"," cannot open compressed file 'C:/Users/ciesp/Dropbox/Civan_UTPL_2014/Docencia_Civan/Biología/Ecologia Poblaciones y Comunidades/Prácticas/Propiedades de la poblacion/.Rproj.user/shared/notebooks/B356E85F-Ejer.Propiedades de la poblacion/1/513D8A8F/c2l0376vmqiin_t/2af72c5e6200414089422eac72945299.snapshot', probable reason 'No such file or directory'
-"
-"2","Error in gzfile(file, ""wb"") : cannot open the connection
-"

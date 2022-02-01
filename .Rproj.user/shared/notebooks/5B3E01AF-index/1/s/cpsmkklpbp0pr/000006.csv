@@ -1,0 +1,4 @@
+"0","crs(csDes) <- crs(wrld_simpl)
+"
+"2","Error in crs(wrld_simpl) : no se pudo encontrar la función ""crs""
+"

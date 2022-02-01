@@ -1,0 +1,2 @@
+"0","lolNA <- which(is.na(desGbifCd$lon)&is.na(desGbifCd$lat))"
+"0","desGbifCd <- desGbifCd[-lolNA,]"

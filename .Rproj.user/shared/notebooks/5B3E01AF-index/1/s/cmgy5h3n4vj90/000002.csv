@@ -1,0 +1,4 @@
+"0","library(maptools)"
+"0","data(wrld_simpl)"
+"0","#graficamos un mapa del mundo"
+"0","plot(wrld_simpl, xlim=c(-100,40), ylim=c(-60,40), axes=TRUE, col=""light yellow"")"
